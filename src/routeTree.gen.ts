@@ -14,10 +14,10 @@ import { Route as Char123LocaleChar125404RouteImport } from './routes/{-$locale}
 import { Route as Char123LocaleChar125PublicRouteRouteImport } from './routes/{-$locale}/_public/route'
 import { Route as Char123LocaleChar125PrivateRouteRouteImport } from './routes/{-$locale}/_private/route'
 import { Route as Char123LocaleChar125PublicIndexRouteImport } from './routes/{-$locale}/_public/index'
-import { Route as Char123LocaleChar125PublicAuthRouteRouteImport } from './routes/{-$locale}/_public/auth/route'
+import { Route as Char123LocaleChar125PublicAuthRouteRouteImport } from './routes/{-$locale}/_public/_auth/route'
 import { Route as Char123LocaleChar125PrivateUserRouteRouteImport } from './routes/{-$locale}/_private/_user/route'
 import { Route as Char123LocaleChar125PrivateAdminRouteRouteImport } from './routes/{-$locale}/_private/_admin/route'
-import { Route as Char123LocaleChar125PublicAuthLoginRouteImport } from './routes/{-$locale}/_public/auth/login'
+import { Route as Char123LocaleChar125PublicAuthLoginRouteImport } from './routes/{-$locale}/_public/_auth/login'
 import { Route as Char123LocaleChar125PrivateUserSpacesRouteImport } from './routes/{-$locale}/_private/_user/spaces'
 import { Route as Char123LocaleChar125PrivateUserCommunityRouteImport } from './routes/{-$locale}/_private/_user/community'
 import { Route as Char123LocaleChar125PrivateAdminAdminUsersRouteImport } from './routes/{-$locale}/_private/_admin/admin.users'
@@ -51,8 +51,7 @@ const Char123LocaleChar125PublicIndexRoute =
   } as any)
 const Char123LocaleChar125PublicAuthRouteRoute =
   Char123LocaleChar125PublicAuthRouteRouteImport.update({
-    id: '/auth',
-    path: '/auth',
+    id: '/_auth',
     getParentRoute: () => Char123LocaleChar125PublicRouteRoute,
   } as any)
 const Char123LocaleChar125PrivateUserRouteRoute =
@@ -91,22 +90,20 @@ const Char123LocaleChar125PrivateAdminAdminUsersRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/{-$locale}': typeof Char123LocaleChar125PrivateUserRouteRouteWithChildren
+  '/{-$locale}': typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
-  '/{-$locale}/auth': typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
   '/{-$locale}/': typeof Char123LocaleChar125PublicIndexRoute
   '/{-$locale}/community': typeof Char123LocaleChar125PrivateUserCommunityRoute
   '/{-$locale}/spaces': typeof Char123LocaleChar125PrivateUserSpacesRoute
-  '/{-$locale}/auth/login': typeof Char123LocaleChar125PublicAuthLoginRoute
+  '/{-$locale}/login': typeof Char123LocaleChar125PublicAuthLoginRoute
   '/{-$locale}/admin/users': typeof Char123LocaleChar125PrivateAdminAdminUsersRoute
 }
 export interface FileRoutesByTo {
   '/{-$locale}': typeof Char123LocaleChar125PublicIndexRoute
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
-  '/{-$locale}/auth': typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
   '/{-$locale}/community': typeof Char123LocaleChar125PrivateUserCommunityRoute
   '/{-$locale}/spaces': typeof Char123LocaleChar125PrivateUserSpacesRoute
-  '/{-$locale}/auth/login': typeof Char123LocaleChar125PublicAuthLoginRoute
+  '/{-$locale}/login': typeof Char123LocaleChar125PublicAuthLoginRoute
   '/{-$locale}/admin/users': typeof Char123LocaleChar125PrivateAdminAdminUsersRoute
 }
 export interface FileRoutesById {
@@ -117,11 +114,11 @@ export interface FileRoutesById {
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
   '/{-$locale}/_private/_admin': typeof Char123LocaleChar125PrivateAdminRouteRouteWithChildren
   '/{-$locale}/_private/_user': typeof Char123LocaleChar125PrivateUserRouteRouteWithChildren
-  '/{-$locale}/_public/auth': typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
+  '/{-$locale}/_public/_auth': typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
   '/{-$locale}/_public/': typeof Char123LocaleChar125PublicIndexRoute
   '/{-$locale}/_private/_user/community': typeof Char123LocaleChar125PrivateUserCommunityRoute
   '/{-$locale}/_private/_user/spaces': typeof Char123LocaleChar125PrivateUserSpacesRoute
-  '/{-$locale}/_public/auth/login': typeof Char123LocaleChar125PublicAuthLoginRoute
+  '/{-$locale}/_public/_auth/login': typeof Char123LocaleChar125PublicAuthLoginRoute
   '/{-$locale}/_private/_admin/admin/users': typeof Char123LocaleChar125PrivateAdminAdminUsersRoute
 }
 export interface FileRouteTypes {
@@ -129,20 +126,18 @@ export interface FileRouteTypes {
   fullPaths:
     | '/{-$locale}'
     | '/{-$locale}/404'
-    | '/{-$locale}/auth'
     | '/{-$locale}/'
     | '/{-$locale}/community'
     | '/{-$locale}/spaces'
-    | '/{-$locale}/auth/login'
+    | '/{-$locale}/login'
     | '/{-$locale}/admin/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/{-$locale}'
     | '/{-$locale}/404'
-    | '/{-$locale}/auth'
     | '/{-$locale}/community'
     | '/{-$locale}/spaces'
-    | '/{-$locale}/auth/login'
+    | '/{-$locale}/login'
     | '/{-$locale}/admin/users'
   id:
     | '__root__'
@@ -152,11 +147,11 @@ export interface FileRouteTypes {
     | '/{-$locale}/404'
     | '/{-$locale}/_private/_admin'
     | '/{-$locale}/_private/_user'
-    | '/{-$locale}/_public/auth'
+    | '/{-$locale}/_public/_auth'
     | '/{-$locale}/_public/'
     | '/{-$locale}/_private/_user/community'
     | '/{-$locale}/_private/_user/spaces'
-    | '/{-$locale}/_public/auth/login'
+    | '/{-$locale}/_public/_auth/login'
     | '/{-$locale}/_private/_admin/admin/users'
   fileRoutesById: FileRoutesById
 }
@@ -201,10 +196,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125PublicIndexRouteImport
       parentRoute: typeof Char123LocaleChar125PublicRouteRoute
     }
-    '/{-$locale}/_public/auth': {
-      id: '/{-$locale}/_public/auth'
-      path: '/auth'
-      fullPath: '/{-$locale}/auth'
+    '/{-$locale}/_public/_auth': {
+      id: '/{-$locale}/_public/_auth'
+      path: ''
+      fullPath: '/{-$locale}'
       preLoaderRoute: typeof Char123LocaleChar125PublicAuthRouteRouteImport
       parentRoute: typeof Char123LocaleChar125PublicRouteRoute
     }
@@ -222,10 +217,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125PrivateAdminRouteRouteImport
       parentRoute: typeof Char123LocaleChar125PrivateRouteRoute
     }
-    '/{-$locale}/_public/auth/login': {
-      id: '/{-$locale}/_public/auth/login'
+    '/{-$locale}/_public/_auth/login': {
+      id: '/{-$locale}/_public/_auth/login'
       path: '/login'
-      fullPath: '/{-$locale}/auth/login'
+      fullPath: '/{-$locale}/login'
       preLoaderRoute: typeof Char123LocaleChar125PublicAuthLoginRouteImport
       parentRoute: typeof Char123LocaleChar125PublicAuthRouteRoute
     }
