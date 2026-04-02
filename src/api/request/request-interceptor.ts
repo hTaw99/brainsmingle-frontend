@@ -7,7 +7,7 @@ import { refreshToken } from '@/api/auth/refresh-token'
 import { getContext } from '@/integrations/tanstack-query/root-provider'
 import { QUERY_KEYS } from '@/constants/query-keys'
 
-export const requestSuccessInterceptor = async (
+export const requestInterceptor = async (
   config: InternalAxiosRequestConfig,
 ) => {
   const accessToken = await getIsomorphicAccessToken()

@@ -2,18 +2,16 @@ import { useGetMe } from '@/api/users/get-me'
 import { createFileRoute } from '@tanstack/react-router'
 import { useIntlayer } from 'react-intlayer'
 
-export const Route = createFileRoute('/{-$locale}/_private/_user/spaces')(
-  {
-    head: () => ({
-      meta: [
-        {
-          title: 'Spaces | BrainsMingle',
-        },
-      ],
-    }),
-    component: RouteComponent,
-  },
-)
+export const Route = createFileRoute('/{-$locale}/_private/_user/spaces')({
+  head: () => ({
+    meta: [
+      {
+        title: 'Spaces | BrainsMingle',
+      },
+    ],
+  }),
+  component: RouteComponent,
+})
 
 function RouteComponent() {
   const { data: me } = useGetMe()
