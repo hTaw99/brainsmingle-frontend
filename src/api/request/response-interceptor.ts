@@ -1,11 +1,11 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
 
-// import { refreshToken } from '@/api/auth/refresh-token'
-import { apiClient } from './api-client'
-import { getErrorMessage } from './error-handler'
-import { setIsomorphicAccessToken } from './request-interceptor'
-import { useAuthStore } from '@/store/auth'
+import { apiClient } from '@/api/request/api-client'
+import { getErrorMessage } from '@/api/request/error-handler'
+import { setIsomorphicAccessToken } from '@/api/request/request-interceptor'
 import { refreshToken } from '@/api/auth/refresh-token'
+import { getContext } from '@/integrations/tanstack-query/root-provider'
+import { QUERY_KEYS } from '@/constants/query-keys'
 
 let isRefreshing = false
 let failedQueue: Array<{
@@ -25,7 +25,8 @@ const processQueue = (error: AxiosError | null = null) => {
 }
 
 const forceLogout = async () => {
-  useAuthStore.getState().clearAccessToken()
+  const { queryClient } = getContext()
+  queryClient.removeQueries({ queryKey: QUERY_KEYS.accessToken })
   window.location.href = '/login'
 }
 

@@ -1,13 +1,12 @@
 import axios from 'axios'
 
-import { getApiBaseUrl } from './api-base-url'
-import { responseErrorInterceptor } from './response-interceptor'
-import { requestSuccessInterceptor } from './request-interceptor'
+import { responseErrorInterceptor } from '@/api/request/response-interceptor'
+import { requestSuccessInterceptor } from '@/api/request/request-interceptor'
 
 const REQUEST_TIMEOUT = 30_000
 
 export const apiClient = axios.create({
-  baseURL: getApiBaseUrl(),
+  baseURL: import.meta.env.VITE_API_URL ?? '',
   timeout: REQUEST_TIMEOUT,
   withCredentials: true,
   headers: {

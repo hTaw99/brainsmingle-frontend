@@ -1,3 +1,4 @@
+import { intlayer, intlayerProxy } from 'vite-intlayer'
 import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -12,7 +13,14 @@ const config = defineConfig({
     devtools(),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
-    tanstackStart(),
+    intlayerProxy(),
+    intlayer(),
+    tanstackStart({
+      router: {
+        routeFileIgnorePattern:
+          '.content.(ts|tsx|js|mjs|cjs|jsx|json|jsonc|json5)$',
+      },
+    }),
     viteReact(),
   ],
 })

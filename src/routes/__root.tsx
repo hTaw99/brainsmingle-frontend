@@ -1,16 +1,17 @@
-import { useEffect } from 'react'
 import {
   HeadContent,
-  Outlet,
   Scripts,
   createRootRouteWithContext,
+  useMatches,
 } from '@tanstack/react-router'
+import { defaultLocale, getHTMLTextDir } from 'intlayer'
+import { IntlayerProvider } from 'react-intlayer'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
-import PostHogProvider from '../integrations/posthog/provider'
+import PostHogProvider from '@/integrations/posthog/provider'
 
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
+import TanStackQueryDevtools from '@/integrations/tanstack-query/devtools'
 
 import appCss from '../styles.css?url'
 
@@ -20,23 +21,12 @@ import type { getMe } from '@/api/users/get-me'
 import { getMeQueryOptions } from '@/api/users/get-me'
 import { getIsomorphicAccessToken } from '@/api/request/request-interceptor'
 import { QUERY_KEYS } from '@/constants/query-keys'
-import { useAuthStore } from '@/store/auth'
+import { Direction } from 'radix-ui'
+import { NotFoundComponent } from '@/components/not-found'
 
 interface MyRouterContext {
   queryClient: QueryClient
   user?: Awaited<ReturnType<typeof getMe>> | null
-  accessToken?: string | null
-}
-
-function RootComponent() {
-  const { accessToken } = Route.useRouteContext()
-  const setAccessToken = useAuthStore((s) => s.setAccessToken)
-
-  useEffect(() => {
-    if (accessToken) setAccessToken(accessToken)
-  }, [accessToken, setAccessToken])
-
-  return <Outlet />
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
@@ -44,7 +34,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     const accessToken = await getIsomorphicAccessToken()
 
     if (!accessToken) {
-      return { user: null, accessToken: null }
+      return { user: null }
     }
 
     const me = await context.queryClient.ensureQueryData(getMeQueryOptions())
@@ -52,10 +42,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     if (!me?.data) {
       await clearAuthCookies()
       context.queryClient.removeQueries({ queryKey: QUERY_KEYS.me })
-      return { user: null, accessToken: null }
+      return { user: null }
     }
 
-    return { user: me, accessToken }
+    context.queryClient.setQueryData(QUERY_KEYS.accessToken, accessToken)
+    return { user: me }
   },
 
   head: () => {
@@ -80,39 +71,41 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       ],
     }
   },
-  notFoundComponent: () => (
-    <div className="bg-background text-white h-screen flex items-center justify-center">
-      Page not found
-    </div>
-  ),
-  component: RootComponent,
+  notFoundComponent: NotFoundComponent,
   shellComponent: RootDocument,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const matches = useMatches()
+  const localeRoute = matches.find((m) => m.routeId === '/{-$locale}')
+  const locale = localeRoute?.params.locale ?? defaultLocale
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html dir={getHTMLTextDir(locale)} lang={locale} suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
+
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        <PostHogProvider>
-          {/* <TanStackQueryProvider> */}
-          {children}
-          <TanStackDevtools
-            config={{
-              position: 'bottom-right',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-              TanStackQueryDevtools,
-            ]}
-          />
-          {/* </TanStackQueryProvider> */}
-        </PostHogProvider>
+        <IntlayerProvider locale={locale}>
+          <Direction.Provider dir={getHTMLTextDir(locale) as any}>
+            <PostHogProvider>
+              {children}
+              <TanStackDevtools
+                config={{
+                  position: 'bottom-right',
+                }}
+                plugins={[
+                  {
+                    name: 'Tanstack Router',
+                    render: <TanStackRouterDevtoolsPanel />,
+                  },
+                  TanStackQueryDevtools,
+                ]}
+              />
+            </PostHogProvider>
+          </Direction.Provider>
+        </IntlayerProvider>
         <Scripts />
       </body>
     </html>

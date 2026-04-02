@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useRouter } from '@tanstack/react-router'
-import { useAuthStore } from '@/store/auth'
-import { getAuthCookieOptions } from '#/lib/get-auth-cookie-options'
+import { useLocalizedNavigate } from '@/hooks/use-localized-navigate'
+import { getAuthCookieOptions } from '@/lib/get-auth-cookie-options'
 import { createServerFn } from '@tanstack/react-start'
 import { setCookie } from '@tanstack/react-start/server'
-import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from '#/constants/auth'
-import { QUERY_KEYS } from '#/constants/query-keys'
+import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from '@/constants/auth'
+import { QUERY_KEYS } from '@/constants/query-keys'
+import { useLocation } from '@tanstack/react-router'
 
 export const login = createServerFn().handler(async () => {
   const accessToken =
@@ -32,24 +32,27 @@ export const login = createServerFn().handler(async () => {
   //   refresh: string
   // }>({
   //   url: '/auth/',
-  //   baseURL: import.meta.env.VITE_API_URL_WITHOUT_PREFIX,
   //   method: 'POST',
   //   data: { login: email, password },
   // })
 })
 
 export const useLogin = () => {
-  const { setAccessToken } = useAuthStore()
-  const { navigate } = useRouter()
+  const navigate = useLocalizedNavigate()
   const queryClient = useQueryClient()
+  const { search } = useLocation()
 
   return useMutation({
     mutationFn: async () => {
       const data = await login()
+
       queryClient.removeQueries({ queryKey: QUERY_KEYS.me })
       queryClient.removeQueries({ queryKey: QUERY_KEYS.refreshToken })
-      setAccessToken(data.accessToken)
-      await navigate({ to: '/spaces' })
+      queryClient.setQueryData(QUERY_KEYS.accessToken, data.accessToken)
+
+      await navigate({
+        to: (search.redirectTo as any) ?? '/spaces',
+      })
       return data
     },
   })

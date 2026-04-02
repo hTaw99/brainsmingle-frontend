@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/cairo";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -127,4 +128,9 @@
   html {
     @apply font-sans;
     }
+  /* Cairo for Arabic UI (Intlayer uses lang="ar" on <html>) */
+  html[lang^='ar'] {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Cairo Variable', sans-serif;
+  }
 }

@@ -1,6 +1,6 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { request } from '@/api/request'
-import { QUERY_KEYS } from '#/constants/query-keys'
+import { QUERY_KEYS } from '@/constants/query-keys'
 import type { TUser } from '@/types/user'
 
 export type TMePayload = {

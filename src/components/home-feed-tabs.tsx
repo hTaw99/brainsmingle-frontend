@@ -1,29 +1,34 @@
-import { FEED_ITEM_TYPE } from '#/types/feed'
-import { Link } from '@tanstack/react-router'
+import { FEED_ITEM_TYPE } from '@/types/feed'
+import { useIntlayer } from 'react-intlayer'
+
+import { LocalizedLink } from '@/components/localized-link'
+
 import { TabsList, TabsTrigger } from './ui/tabs'
 
-const feedTypes = [
-  {
-    label: 'Rooms',
-    value: FEED_ITEM_TYPE.rooms,
-  },
-  {
-    label: 'Posts',
-    value: FEED_ITEM_TYPE.posts,
-  },
-]
-
 export function HomeFeedTabs() {
+  const content = useIntlayer('app')
+
+  const feedTypes = [
+    {
+      label: content.feed.rooms,
+      value: FEED_ITEM_TYPE.rooms,
+    },
+    {
+      label: content.feed.posts,
+      value: FEED_ITEM_TYPE.posts,
+    },
+  ]
+
   return (
     <TabsList>
       {feedTypes.map((feedType) => (
-        <Link
+        <LocalizedLink
           key={feedType.value}
-          to={'/'}
+          to="/"
           search={{ feedType: feedType.value }}
         >
           <TabsTrigger value={feedType.value}>{feedType.label}</TabsTrigger>
-        </Link>
+        </LocalizedLink>
       ))}
     </TabsList>
   )

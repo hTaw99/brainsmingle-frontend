@@ -1,8 +1,8 @@
 import { createServerFn } from '@tanstack/react-start'
 import { getCookie, setCookie } from '@tanstack/react-start/server'
-import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from '#/constants/auth'
-import { getAuthCookieOptions } from '#/lib/get-auth-cookie-options'
-import { QUERY_KEYS } from '#/constants/query-keys'
+import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from '@/constants/auth'
+import { getAuthCookieOptions } from '@/lib/get-auth-cookie-options'
+import { QUERY_KEYS } from '@/constants/query-keys'
 
 export const refreshToken = createServerFn().handler(async () => {
   const existingRefreshToken = getCookie(REFRESH_TOKEN_NAME)

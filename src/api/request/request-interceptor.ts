@@ -1,10 +1,11 @@
 import { getCookie, setCookie } from '@tanstack/react-start/server'
 import { createIsomorphicFn } from '@tanstack/react-start'
 import type { InternalAxiosRequestConfig } from 'axios'
-import { useAuthStore } from '@/store/auth'
 import { getAuthCookieOptions } from '@/lib/get-auth-cookie-options'
 import { ACCESS_TOKEN_NAME } from '@/constants/auth'
-import { refreshToken } from '../auth/refresh-token'
+import { refreshToken } from '@/api/auth/refresh-token'
+import { getContext } from '@/integrations/tanstack-query/root-provider'
+import { QUERY_KEYS } from '@/constants/query-keys'
 
 export const requestSuccessInterceptor = async (
   config: InternalAxiosRequestConfig,
@@ -27,7 +28,7 @@ export const getIsomorphicAccessToken = createIsomorphicFn()
     return accessToken
   })
   .client(() => {
-    return useAuthStore.getState().accessToken
+    return getContext().queryClient.getQueryData(QUERY_KEYS.accessToken)
   })
 
 export const setIsomorphicAccessToken = createIsomorphicFn()
@@ -36,5 +37,8 @@ export const setIsomorphicAccessToken = createIsomorphicFn()
     setCookie(ACCESS_TOKEN_NAME, data.accessToken, accessCookieOptions)
   })
   .client((data) => {
-    useAuthStore.getState().setAccessToken(data.accessToken)
+    getContext().queryClient.setQueryData(
+      QUERY_KEYS.accessToken,
+      data.accessToken,
+    )
   })

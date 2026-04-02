@@ -1,15 +1,18 @@
-import { useGetFeeds } from '@/api/get-feeds'
+import { useGetFeeds } from '@/api/feeds/get-feeds'
 import { FEED_ITEM_TYPE } from '@/types/feed'
 import { useSearch } from '@tanstack/react-router'
 
 export const FeedsList = () => {
-  const search = useSearch({ from: '/_guest/' })
+  const search = useSearch({ from: '/{-$locale}/_guest/' })
 
   const { data: feeds } = useGetFeeds({
     page: 1,
     limit: 10,
     feedType: search.feedType ?? FEED_ITEM_TYPE.rooms,
   })
+
+  if (!feeds.data.items.length)
+    return <div className="text-white/50 text-sm mt-8">No feeds found</div>
 
   return (
     <ul className="flex flex-col gap-4">
