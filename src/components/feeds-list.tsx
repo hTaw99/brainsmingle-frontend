@@ -4,7 +4,7 @@ import { useSearch } from '@tanstack/react-router'
 import { useIntlayer } from 'react-intlayer'
 
 export const FeedsList = () => {
-  const search = useSearch({ from: '/{-$locale}/_guest/' })
+  const search = useSearch({ from: '/{-$locale}/_public/' })
   const content = useIntlayer('app')
 
   const isRooms = search.feedType === FEED_ITEM_TYPE.rooms

@@ -1,7 +1,7 @@
 import { useRouteContext } from '@tanstack/react-router'
 
 export function UserDetails() {
-  const { user } = useRouteContext({ from: '/{-$locale}/_guest/' })
+  const { user } = useRouteContext({ from: '/{-$locale}/_public/' })
 
   if (!user) return null
 

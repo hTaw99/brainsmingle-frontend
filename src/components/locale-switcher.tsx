@@ -24,6 +24,7 @@ export const LocaleSwitcher: FC = () => {
             aria-current={localeEl === locale ? 'page' : undefined}
             onClick={() => setLocale(localeEl)}
             params={{ locale: getPrefix(localeEl).localePrefix }}
+            search={(prev) => prev}
             to={pathWithoutLocale as To}
             className="underline-offset-4 hover:underline"
           >

@@ -5,7 +5,7 @@ import { Tabs } from '@/components/ui/tabs'
 import { UserDetails } from '@/components/user-details'
 
 export function FeedLayout({ children }: { children: React.ReactNode }) {
-  const search = useSearch({ from: '/{-$locale}/_guest/' })
+  const search = useSearch({ from: '/{-$locale}/_public/' })
   const feedTypeParam = search.feedType || FEED_ITEM_TYPE.rooms
 
   return (
