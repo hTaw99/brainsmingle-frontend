@@ -1,9 +1,13 @@
 import { useGetFeeds } from '@/api/feeds/get-feeds'
 import { FEED_ITEM_TYPE } from '@/types/feed'
 import { useSearch } from '@tanstack/react-router'
+import { useIntlayer } from 'react-intlayer'
 
 export const FeedsList = () => {
   const search = useSearch({ from: '/{-$locale}/_guest/' })
+  const content = useIntlayer('app')
+
+  const isRooms = search.feedType === FEED_ITEM_TYPE.rooms
 
   const { data: feeds } = useGetFeeds({
     page: 1,
@@ -12,7 +16,13 @@ export const FeedsList = () => {
   })
 
   if (!feeds.data.items.length)
-    return <div className="text-white/50 text-sm mt-8">No feeds found</div>
+    return (
+      <div className="text-white/50 text-sm mt-8">
+        {content.feed.notFound({
+          name: isRooms ? content.feed.rooms : content.feed.posts,
+        })}
+      </div>
+    )
 
   return (
     <ul className="flex flex-col gap-4">
