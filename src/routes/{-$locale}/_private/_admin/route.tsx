@@ -4,7 +4,7 @@ import { Header } from '@/components/header'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { defaultLocale } from 'intlayer'
 
-export const Route = createFileRoute('/{-$locale}/_authenticated/_admin')({
+export const Route = createFileRoute('/{-$locale}/_private/_admin')({
   beforeLoad: async ({ context, params }) => {
     const isAdmin = await context.queryClient.ensureQueryData(
       checkIsAdminQueryOptions(),

@@ -3,7 +3,7 @@ import { useLogin } from '@/api/auth/login'
 import { createFileRoute } from '@tanstack/react-router'
 import { useIntlayer } from 'react-intlayer'
 
-export const Route = createFileRoute('/{-$locale}/_guest/login')({
+export const Route = createFileRoute('/{-$locale}/_public/auth/login')({
   validateSearch: z.object({
     redirectTo: z.string().optional(),
   }),

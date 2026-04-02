@@ -1,7 +1,7 @@
 import { Header } from '@/components/header'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/{-$locale}/_guest')({
+export const Route = createFileRoute('/{-$locale}/_private/_user')({
   component: RouteComponent,
 })
 

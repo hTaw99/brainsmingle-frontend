@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute(
-  '/{-$locale}/_authenticated/_admin/admin/users',
+  '/{-$locale}/_private/_admin/admin/users',
 )({
   head: () => ({
     meta: [

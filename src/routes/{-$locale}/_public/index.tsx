@@ -15,7 +15,7 @@ const feedSearchSchema = z.object({
     .catch(undefined),
 })
 
-export const Route = createFileRoute('/{-$locale}/_guest/')({
+export const Route = createFileRoute('/{-$locale}/_public/')({
   validateSearch: feedSearchSchema,
 
   loaderDeps(opts) {

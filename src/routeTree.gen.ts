@@ -11,15 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
 import { Route as Char123LocaleChar125404RouteImport } from './routes/{-$locale}/404'
-import { Route as Char123LocaleChar125GuestRouteRouteImport } from './routes/{-$locale}/_guest/route'
-import { Route as Char123LocaleChar125AuthenticatedRouteRouteImport } from './routes/{-$locale}/_authenticated/route'
-import { Route as Char123LocaleChar125GuestIndexRouteImport } from './routes/{-$locale}/_guest/index'
-import { Route as Char123LocaleChar125GuestLoginRouteImport } from './routes/{-$locale}/_guest/login'
-import { Route as Char123LocaleChar125AuthenticatedUserRouteRouteImport } from './routes/{-$locale}/_authenticated/_user/route'
-import { Route as Char123LocaleChar125AuthenticatedAdminRouteRouteImport } from './routes/{-$locale}/_authenticated/_admin/route'
-import { Route as Char123LocaleChar125AuthenticatedUserSpacesRouteImport } from './routes/{-$locale}/_authenticated/_user/spaces'
-import { Route as Char123LocaleChar125AuthenticatedUserCommunityRouteImport } from './routes/{-$locale}/_authenticated/_user/community'
-import { Route as Char123LocaleChar125AuthenticatedAdminAdminUsersRouteImport } from './routes/{-$locale}/_authenticated/_admin/admin.users'
+import { Route as Char123LocaleChar125PublicRouteRouteImport } from './routes/{-$locale}/_public/route'
+import { Route as Char123LocaleChar125PrivateRouteRouteImport } from './routes/{-$locale}/_private/route'
+import { Route as Char123LocaleChar125PublicIndexRouteImport } from './routes/{-$locale}/_public/index'
+import { Route as Char123LocaleChar125PublicAuthRouteRouteImport } from './routes/{-$locale}/_public/auth/route'
+import { Route as Char123LocaleChar125PrivateUserRouteRouteImport } from './routes/{-$locale}/_private/_user/route'
+import { Route as Char123LocaleChar125PrivateAdminRouteRouteImport } from './routes/{-$locale}/_private/_admin/route'
+import { Route as Char123LocaleChar125PublicAuthLoginRouteImport } from './routes/{-$locale}/_public/auth/login'
+import { Route as Char123LocaleChar125PrivateUserSpacesRouteImport } from './routes/{-$locale}/_private/_user/spaces'
+import { Route as Char123LocaleChar125PrivateUserCommunityRouteImport } from './routes/{-$locale}/_private/_user/community'
+import { Route as Char123LocaleChar125PrivateAdminAdminUsersRouteImport } from './routes/{-$locale}/_private/_admin/admin.users'
 
 const Char123LocaleChar125RouteRoute =
   Char123LocaleChar125RouteRouteImport.update({
@@ -32,119 +33,131 @@ const Char123LocaleChar125404Route = Char123LocaleChar125404RouteImport.update({
   path: '/404',
   getParentRoute: () => Char123LocaleChar125RouteRoute,
 } as any)
-const Char123LocaleChar125GuestRouteRoute =
-  Char123LocaleChar125GuestRouteRouteImport.update({
-    id: '/_guest',
+const Char123LocaleChar125PublicRouteRoute =
+  Char123LocaleChar125PublicRouteRouteImport.update({
+    id: '/_public',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
-const Char123LocaleChar125AuthenticatedRouteRoute =
-  Char123LocaleChar125AuthenticatedRouteRouteImport.update({
-    id: '/_authenticated',
+const Char123LocaleChar125PrivateRouteRoute =
+  Char123LocaleChar125PrivateRouteRouteImport.update({
+    id: '/_private',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
-const Char123LocaleChar125GuestIndexRoute =
-  Char123LocaleChar125GuestIndexRouteImport.update({
+const Char123LocaleChar125PublicIndexRoute =
+  Char123LocaleChar125PublicIndexRouteImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => Char123LocaleChar125GuestRouteRoute,
+    getParentRoute: () => Char123LocaleChar125PublicRouteRoute,
   } as any)
-const Char123LocaleChar125GuestLoginRoute =
-  Char123LocaleChar125GuestLoginRouteImport.update({
+const Char123LocaleChar125PublicAuthRouteRoute =
+  Char123LocaleChar125PublicAuthRouteRouteImport.update({
+    id: '/auth',
+    path: '/auth',
+    getParentRoute: () => Char123LocaleChar125PublicRouteRoute,
+  } as any)
+const Char123LocaleChar125PrivateUserRouteRoute =
+  Char123LocaleChar125PrivateUserRouteRouteImport.update({
+    id: '/_user',
+    getParentRoute: () => Char123LocaleChar125PrivateRouteRoute,
+  } as any)
+const Char123LocaleChar125PrivateAdminRouteRoute =
+  Char123LocaleChar125PrivateAdminRouteRouteImport.update({
+    id: '/_admin',
+    getParentRoute: () => Char123LocaleChar125PrivateRouteRoute,
+  } as any)
+const Char123LocaleChar125PublicAuthLoginRoute =
+  Char123LocaleChar125PublicAuthLoginRouteImport.update({
     id: '/login',
     path: '/login',
-    getParentRoute: () => Char123LocaleChar125GuestRouteRoute,
+    getParentRoute: () => Char123LocaleChar125PublicAuthRouteRoute,
   } as any)
-const Char123LocaleChar125AuthenticatedUserRouteRoute =
-  Char123LocaleChar125AuthenticatedUserRouteRouteImport.update({
-    id: '/_user',
-    getParentRoute: () => Char123LocaleChar125AuthenticatedRouteRoute,
-  } as any)
-const Char123LocaleChar125AuthenticatedAdminRouteRoute =
-  Char123LocaleChar125AuthenticatedAdminRouteRouteImport.update({
-    id: '/_admin',
-    getParentRoute: () => Char123LocaleChar125AuthenticatedRouteRoute,
-  } as any)
-const Char123LocaleChar125AuthenticatedUserSpacesRoute =
-  Char123LocaleChar125AuthenticatedUserSpacesRouteImport.update({
+const Char123LocaleChar125PrivateUserSpacesRoute =
+  Char123LocaleChar125PrivateUserSpacesRouteImport.update({
     id: '/spaces',
     path: '/spaces',
-    getParentRoute: () => Char123LocaleChar125AuthenticatedUserRouteRoute,
+    getParentRoute: () => Char123LocaleChar125PrivateUserRouteRoute,
   } as any)
-const Char123LocaleChar125AuthenticatedUserCommunityRoute =
-  Char123LocaleChar125AuthenticatedUserCommunityRouteImport.update({
+const Char123LocaleChar125PrivateUserCommunityRoute =
+  Char123LocaleChar125PrivateUserCommunityRouteImport.update({
     id: '/community',
     path: '/community',
-    getParentRoute: () => Char123LocaleChar125AuthenticatedUserRouteRoute,
+    getParentRoute: () => Char123LocaleChar125PrivateUserRouteRoute,
   } as any)
-const Char123LocaleChar125AuthenticatedAdminAdminUsersRoute =
-  Char123LocaleChar125AuthenticatedAdminAdminUsersRouteImport.update({
+const Char123LocaleChar125PrivateAdminAdminUsersRoute =
+  Char123LocaleChar125PrivateAdminAdminUsersRouteImport.update({
     id: '/admin/users',
     path: '/admin/users',
-    getParentRoute: () => Char123LocaleChar125AuthenticatedAdminRouteRoute,
+    getParentRoute: () => Char123LocaleChar125PrivateAdminRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/{-$locale}': typeof Char123LocaleChar125AuthenticatedUserRouteRouteWithChildren
+  '/{-$locale}': typeof Char123LocaleChar125PrivateUserRouteRouteWithChildren
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
-  '/{-$locale}/login': typeof Char123LocaleChar125GuestLoginRoute
-  '/{-$locale}/': typeof Char123LocaleChar125GuestIndexRoute
-  '/{-$locale}/community': typeof Char123LocaleChar125AuthenticatedUserCommunityRoute
-  '/{-$locale}/spaces': typeof Char123LocaleChar125AuthenticatedUserSpacesRoute
-  '/{-$locale}/admin/users': typeof Char123LocaleChar125AuthenticatedAdminAdminUsersRoute
+  '/{-$locale}/auth': typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
+  '/{-$locale}/': typeof Char123LocaleChar125PublicIndexRoute
+  '/{-$locale}/community': typeof Char123LocaleChar125PrivateUserCommunityRoute
+  '/{-$locale}/spaces': typeof Char123LocaleChar125PrivateUserSpacesRoute
+  '/{-$locale}/auth/login': typeof Char123LocaleChar125PublicAuthLoginRoute
+  '/{-$locale}/admin/users': typeof Char123LocaleChar125PrivateAdminAdminUsersRoute
 }
 export interface FileRoutesByTo {
-  '/{-$locale}': typeof Char123LocaleChar125GuestIndexRoute
+  '/{-$locale}': typeof Char123LocaleChar125PublicIndexRoute
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
-  '/{-$locale}/login': typeof Char123LocaleChar125GuestLoginRoute
-  '/{-$locale}/community': typeof Char123LocaleChar125AuthenticatedUserCommunityRoute
-  '/{-$locale}/spaces': typeof Char123LocaleChar125AuthenticatedUserSpacesRoute
-  '/{-$locale}/admin/users': typeof Char123LocaleChar125AuthenticatedAdminAdminUsersRoute
+  '/{-$locale}/auth': typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
+  '/{-$locale}/community': typeof Char123LocaleChar125PrivateUserCommunityRoute
+  '/{-$locale}/spaces': typeof Char123LocaleChar125PrivateUserSpacesRoute
+  '/{-$locale}/auth/login': typeof Char123LocaleChar125PublicAuthLoginRoute
+  '/{-$locale}/admin/users': typeof Char123LocaleChar125PrivateAdminAdminUsersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/{-$locale}/_authenticated': typeof Char123LocaleChar125AuthenticatedRouteRouteWithChildren
-  '/{-$locale}/_guest': typeof Char123LocaleChar125GuestRouteRouteWithChildren
+  '/{-$locale}/_private': typeof Char123LocaleChar125PrivateRouteRouteWithChildren
+  '/{-$locale}/_public': typeof Char123LocaleChar125PublicRouteRouteWithChildren
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
-  '/{-$locale}/_authenticated/_admin': typeof Char123LocaleChar125AuthenticatedAdminRouteRouteWithChildren
-  '/{-$locale}/_authenticated/_user': typeof Char123LocaleChar125AuthenticatedUserRouteRouteWithChildren
-  '/{-$locale}/_guest/login': typeof Char123LocaleChar125GuestLoginRoute
-  '/{-$locale}/_guest/': typeof Char123LocaleChar125GuestIndexRoute
-  '/{-$locale}/_authenticated/_user/community': typeof Char123LocaleChar125AuthenticatedUserCommunityRoute
-  '/{-$locale}/_authenticated/_user/spaces': typeof Char123LocaleChar125AuthenticatedUserSpacesRoute
-  '/{-$locale}/_authenticated/_admin/admin/users': typeof Char123LocaleChar125AuthenticatedAdminAdminUsersRoute
+  '/{-$locale}/_private/_admin': typeof Char123LocaleChar125PrivateAdminRouteRouteWithChildren
+  '/{-$locale}/_private/_user': typeof Char123LocaleChar125PrivateUserRouteRouteWithChildren
+  '/{-$locale}/_public/auth': typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
+  '/{-$locale}/_public/': typeof Char123LocaleChar125PublicIndexRoute
+  '/{-$locale}/_private/_user/community': typeof Char123LocaleChar125PrivateUserCommunityRoute
+  '/{-$locale}/_private/_user/spaces': typeof Char123LocaleChar125PrivateUserSpacesRoute
+  '/{-$locale}/_public/auth/login': typeof Char123LocaleChar125PublicAuthLoginRoute
+  '/{-$locale}/_private/_admin/admin/users': typeof Char123LocaleChar125PrivateAdminAdminUsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/{-$locale}'
     | '/{-$locale}/404'
-    | '/{-$locale}/login'
+    | '/{-$locale}/auth'
     | '/{-$locale}/'
     | '/{-$locale}/community'
     | '/{-$locale}/spaces'
+    | '/{-$locale}/auth/login'
     | '/{-$locale}/admin/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/{-$locale}'
     | '/{-$locale}/404'
-    | '/{-$locale}/login'
+    | '/{-$locale}/auth'
     | '/{-$locale}/community'
     | '/{-$locale}/spaces'
+    | '/{-$locale}/auth/login'
     | '/{-$locale}/admin/users'
   id:
     | '__root__'
     | '/{-$locale}'
-    | '/{-$locale}/_authenticated'
-    | '/{-$locale}/_guest'
+    | '/{-$locale}/_private'
+    | '/{-$locale}/_public'
     | '/{-$locale}/404'
-    | '/{-$locale}/_authenticated/_admin'
-    | '/{-$locale}/_authenticated/_user'
-    | '/{-$locale}/_guest/login'
-    | '/{-$locale}/_guest/'
-    | '/{-$locale}/_authenticated/_user/community'
-    | '/{-$locale}/_authenticated/_user/spaces'
-    | '/{-$locale}/_authenticated/_admin/admin/users'
+    | '/{-$locale}/_private/_admin'
+    | '/{-$locale}/_private/_user'
+    | '/{-$locale}/_public/auth'
+    | '/{-$locale}/_public/'
+    | '/{-$locale}/_private/_user/community'
+    | '/{-$locale}/_private/_user/spaces'
+    | '/{-$locale}/_public/auth/login'
+    | '/{-$locale}/_private/_admin/admin/users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -167,151 +180,174 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125404RouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/{-$locale}/_guest': {
-      id: '/{-$locale}/_guest'
+    '/{-$locale}/_public': {
+      id: '/{-$locale}/_public'
       path: ''
       fullPath: '/{-$locale}'
-      preLoaderRoute: typeof Char123LocaleChar125GuestRouteRouteImport
+      preLoaderRoute: typeof Char123LocaleChar125PublicRouteRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/{-$locale}/_authenticated': {
-      id: '/{-$locale}/_authenticated'
+    '/{-$locale}/_private': {
+      id: '/{-$locale}/_private'
       path: ''
       fullPath: '/{-$locale}'
-      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedRouteRouteImport
+      preLoaderRoute: typeof Char123LocaleChar125PrivateRouteRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/{-$locale}/_guest/': {
-      id: '/{-$locale}/_guest/'
+    '/{-$locale}/_public/': {
+      id: '/{-$locale}/_public/'
       path: '/'
       fullPath: '/{-$locale}/'
-      preLoaderRoute: typeof Char123LocaleChar125GuestIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125GuestRouteRoute
+      preLoaderRoute: typeof Char123LocaleChar125PublicIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125PublicRouteRoute
     }
-    '/{-$locale}/_guest/login': {
-      id: '/{-$locale}/_guest/login'
+    '/{-$locale}/_public/auth': {
+      id: '/{-$locale}/_public/auth'
+      path: '/auth'
+      fullPath: '/{-$locale}/auth'
+      preLoaderRoute: typeof Char123LocaleChar125PublicAuthRouteRouteImport
+      parentRoute: typeof Char123LocaleChar125PublicRouteRoute
+    }
+    '/{-$locale}/_private/_user': {
+      id: '/{-$locale}/_private/_user'
+      path: ''
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125PrivateUserRouteRouteImport
+      parentRoute: typeof Char123LocaleChar125PrivateRouteRoute
+    }
+    '/{-$locale}/_private/_admin': {
+      id: '/{-$locale}/_private/_admin'
+      path: ''
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125PrivateAdminRouteRouteImport
+      parentRoute: typeof Char123LocaleChar125PrivateRouteRoute
+    }
+    '/{-$locale}/_public/auth/login': {
+      id: '/{-$locale}/_public/auth/login'
       path: '/login'
-      fullPath: '/{-$locale}/login'
-      preLoaderRoute: typeof Char123LocaleChar125GuestLoginRouteImport
-      parentRoute: typeof Char123LocaleChar125GuestRouteRoute
+      fullPath: '/{-$locale}/auth/login'
+      preLoaderRoute: typeof Char123LocaleChar125PublicAuthLoginRouteImport
+      parentRoute: typeof Char123LocaleChar125PublicAuthRouteRoute
     }
-    '/{-$locale}/_authenticated/_user': {
-      id: '/{-$locale}/_authenticated/_user'
-      path: ''
-      fullPath: '/{-$locale}'
-      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedUserRouteRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthenticatedRouteRoute
-    }
-    '/{-$locale}/_authenticated/_admin': {
-      id: '/{-$locale}/_authenticated/_admin'
-      path: ''
-      fullPath: '/{-$locale}'
-      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedAdminRouteRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthenticatedRouteRoute
-    }
-    '/{-$locale}/_authenticated/_user/spaces': {
-      id: '/{-$locale}/_authenticated/_user/spaces'
+    '/{-$locale}/_private/_user/spaces': {
+      id: '/{-$locale}/_private/_user/spaces'
       path: '/spaces'
       fullPath: '/{-$locale}/spaces'
-      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedUserSpacesRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthenticatedUserRouteRoute
+      preLoaderRoute: typeof Char123LocaleChar125PrivateUserSpacesRouteImport
+      parentRoute: typeof Char123LocaleChar125PrivateUserRouteRoute
     }
-    '/{-$locale}/_authenticated/_user/community': {
-      id: '/{-$locale}/_authenticated/_user/community'
+    '/{-$locale}/_private/_user/community': {
+      id: '/{-$locale}/_private/_user/community'
       path: '/community'
       fullPath: '/{-$locale}/community'
-      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedUserCommunityRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthenticatedUserRouteRoute
+      preLoaderRoute: typeof Char123LocaleChar125PrivateUserCommunityRouteImport
+      parentRoute: typeof Char123LocaleChar125PrivateUserRouteRoute
     }
-    '/{-$locale}/_authenticated/_admin/admin/users': {
-      id: '/{-$locale}/_authenticated/_admin/admin/users'
+    '/{-$locale}/_private/_admin/admin/users': {
+      id: '/{-$locale}/_private/_admin/admin/users'
       path: '/admin/users'
       fullPath: '/{-$locale}/admin/users'
-      preLoaderRoute: typeof Char123LocaleChar125AuthenticatedAdminAdminUsersRouteImport
-      parentRoute: typeof Char123LocaleChar125AuthenticatedAdminRouteRoute
+      preLoaderRoute: typeof Char123LocaleChar125PrivateAdminAdminUsersRouteImport
+      parentRoute: typeof Char123LocaleChar125PrivateAdminRouteRoute
     }
   }
 }
 
-interface Char123LocaleChar125AuthenticatedAdminRouteRouteChildren {
-  Char123LocaleChar125AuthenticatedAdminAdminUsersRoute: typeof Char123LocaleChar125AuthenticatedAdminAdminUsersRoute
+interface Char123LocaleChar125PrivateAdminRouteRouteChildren {
+  Char123LocaleChar125PrivateAdminAdminUsersRoute: typeof Char123LocaleChar125PrivateAdminAdminUsersRoute
 }
 
-const Char123LocaleChar125AuthenticatedAdminRouteRouteChildren: Char123LocaleChar125AuthenticatedAdminRouteRouteChildren =
+const Char123LocaleChar125PrivateAdminRouteRouteChildren: Char123LocaleChar125PrivateAdminRouteRouteChildren =
   {
-    Char123LocaleChar125AuthenticatedAdminAdminUsersRoute:
-      Char123LocaleChar125AuthenticatedAdminAdminUsersRoute,
+    Char123LocaleChar125PrivateAdminAdminUsersRoute:
+      Char123LocaleChar125PrivateAdminAdminUsersRoute,
   }
 
-const Char123LocaleChar125AuthenticatedAdminRouteRouteWithChildren =
-  Char123LocaleChar125AuthenticatedAdminRouteRoute._addFileChildren(
-    Char123LocaleChar125AuthenticatedAdminRouteRouteChildren,
+const Char123LocaleChar125PrivateAdminRouteRouteWithChildren =
+  Char123LocaleChar125PrivateAdminRouteRoute._addFileChildren(
+    Char123LocaleChar125PrivateAdminRouteRouteChildren,
   )
 
-interface Char123LocaleChar125AuthenticatedUserRouteRouteChildren {
-  Char123LocaleChar125AuthenticatedUserCommunityRoute: typeof Char123LocaleChar125AuthenticatedUserCommunityRoute
-  Char123LocaleChar125AuthenticatedUserSpacesRoute: typeof Char123LocaleChar125AuthenticatedUserSpacesRoute
+interface Char123LocaleChar125PrivateUserRouteRouteChildren {
+  Char123LocaleChar125PrivateUserCommunityRoute: typeof Char123LocaleChar125PrivateUserCommunityRoute
+  Char123LocaleChar125PrivateUserSpacesRoute: typeof Char123LocaleChar125PrivateUserSpacesRoute
 }
 
-const Char123LocaleChar125AuthenticatedUserRouteRouteChildren: Char123LocaleChar125AuthenticatedUserRouteRouteChildren =
+const Char123LocaleChar125PrivateUserRouteRouteChildren: Char123LocaleChar125PrivateUserRouteRouteChildren =
   {
-    Char123LocaleChar125AuthenticatedUserCommunityRoute:
-      Char123LocaleChar125AuthenticatedUserCommunityRoute,
-    Char123LocaleChar125AuthenticatedUserSpacesRoute:
-      Char123LocaleChar125AuthenticatedUserSpacesRoute,
+    Char123LocaleChar125PrivateUserCommunityRoute:
+      Char123LocaleChar125PrivateUserCommunityRoute,
+    Char123LocaleChar125PrivateUserSpacesRoute:
+      Char123LocaleChar125PrivateUserSpacesRoute,
   }
 
-const Char123LocaleChar125AuthenticatedUserRouteRouteWithChildren =
-  Char123LocaleChar125AuthenticatedUserRouteRoute._addFileChildren(
-    Char123LocaleChar125AuthenticatedUserRouteRouteChildren,
+const Char123LocaleChar125PrivateUserRouteRouteWithChildren =
+  Char123LocaleChar125PrivateUserRouteRoute._addFileChildren(
+    Char123LocaleChar125PrivateUserRouteRouteChildren,
   )
 
-interface Char123LocaleChar125AuthenticatedRouteRouteChildren {
-  Char123LocaleChar125AuthenticatedAdminRouteRoute: typeof Char123LocaleChar125AuthenticatedAdminRouteRouteWithChildren
-  Char123LocaleChar125AuthenticatedUserRouteRoute: typeof Char123LocaleChar125AuthenticatedUserRouteRouteWithChildren
+interface Char123LocaleChar125PrivateRouteRouteChildren {
+  Char123LocaleChar125PrivateAdminRouteRoute: typeof Char123LocaleChar125PrivateAdminRouteRouteWithChildren
+  Char123LocaleChar125PrivateUserRouteRoute: typeof Char123LocaleChar125PrivateUserRouteRouteWithChildren
 }
 
-const Char123LocaleChar125AuthenticatedRouteRouteChildren: Char123LocaleChar125AuthenticatedRouteRouteChildren =
+const Char123LocaleChar125PrivateRouteRouteChildren: Char123LocaleChar125PrivateRouteRouteChildren =
   {
-    Char123LocaleChar125AuthenticatedAdminRouteRoute:
-      Char123LocaleChar125AuthenticatedAdminRouteRouteWithChildren,
-    Char123LocaleChar125AuthenticatedUserRouteRoute:
-      Char123LocaleChar125AuthenticatedUserRouteRouteWithChildren,
+    Char123LocaleChar125PrivateAdminRouteRoute:
+      Char123LocaleChar125PrivateAdminRouteRouteWithChildren,
+    Char123LocaleChar125PrivateUserRouteRoute:
+      Char123LocaleChar125PrivateUserRouteRouteWithChildren,
   }
 
-const Char123LocaleChar125AuthenticatedRouteRouteWithChildren =
-  Char123LocaleChar125AuthenticatedRouteRoute._addFileChildren(
-    Char123LocaleChar125AuthenticatedRouteRouteChildren,
+const Char123LocaleChar125PrivateRouteRouteWithChildren =
+  Char123LocaleChar125PrivateRouteRoute._addFileChildren(
+    Char123LocaleChar125PrivateRouteRouteChildren,
   )
 
-interface Char123LocaleChar125GuestRouteRouteChildren {
-  Char123LocaleChar125GuestLoginRoute: typeof Char123LocaleChar125GuestLoginRoute
-  Char123LocaleChar125GuestIndexRoute: typeof Char123LocaleChar125GuestIndexRoute
+interface Char123LocaleChar125PublicAuthRouteRouteChildren {
+  Char123LocaleChar125PublicAuthLoginRoute: typeof Char123LocaleChar125PublicAuthLoginRoute
 }
 
-const Char123LocaleChar125GuestRouteRouteChildren: Char123LocaleChar125GuestRouteRouteChildren =
+const Char123LocaleChar125PublicAuthRouteRouteChildren: Char123LocaleChar125PublicAuthRouteRouteChildren =
   {
-    Char123LocaleChar125GuestLoginRoute: Char123LocaleChar125GuestLoginRoute,
-    Char123LocaleChar125GuestIndexRoute: Char123LocaleChar125GuestIndexRoute,
+    Char123LocaleChar125PublicAuthLoginRoute:
+      Char123LocaleChar125PublicAuthLoginRoute,
   }
 
-const Char123LocaleChar125GuestRouteRouteWithChildren =
-  Char123LocaleChar125GuestRouteRoute._addFileChildren(
-    Char123LocaleChar125GuestRouteRouteChildren,
+const Char123LocaleChar125PublicAuthRouteRouteWithChildren =
+  Char123LocaleChar125PublicAuthRouteRoute._addFileChildren(
+    Char123LocaleChar125PublicAuthRouteRouteChildren,
+  )
+
+interface Char123LocaleChar125PublicRouteRouteChildren {
+  Char123LocaleChar125PublicAuthRouteRoute: typeof Char123LocaleChar125PublicAuthRouteRouteWithChildren
+  Char123LocaleChar125PublicIndexRoute: typeof Char123LocaleChar125PublicIndexRoute
+}
+
+const Char123LocaleChar125PublicRouteRouteChildren: Char123LocaleChar125PublicRouteRouteChildren =
+  {
+    Char123LocaleChar125PublicAuthRouteRoute:
+      Char123LocaleChar125PublicAuthRouteRouteWithChildren,
+    Char123LocaleChar125PublicIndexRoute: Char123LocaleChar125PublicIndexRoute,
+  }
+
+const Char123LocaleChar125PublicRouteRouteWithChildren =
+  Char123LocaleChar125PublicRouteRoute._addFileChildren(
+    Char123LocaleChar125PublicRouteRouteChildren,
   )
 
 interface Char123LocaleChar125RouteRouteChildren {
-  Char123LocaleChar125AuthenticatedRouteRoute: typeof Char123LocaleChar125AuthenticatedRouteRouteWithChildren
-  Char123LocaleChar125GuestRouteRoute: typeof Char123LocaleChar125GuestRouteRouteWithChildren
+  Char123LocaleChar125PrivateRouteRoute: typeof Char123LocaleChar125PrivateRouteRouteWithChildren
+  Char123LocaleChar125PublicRouteRoute: typeof Char123LocaleChar125PublicRouteRouteWithChildren
   Char123LocaleChar125404Route: typeof Char123LocaleChar125404Route
 }
 
 const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
   {
-    Char123LocaleChar125AuthenticatedRouteRoute:
-      Char123LocaleChar125AuthenticatedRouteRouteWithChildren,
-    Char123LocaleChar125GuestRouteRoute:
-      Char123LocaleChar125GuestRouteRouteWithChildren,
+    Char123LocaleChar125PrivateRouteRoute:
+      Char123LocaleChar125PrivateRouteRouteWithChildren,
+    Char123LocaleChar125PublicRouteRoute:
+      Char123LocaleChar125PublicRouteRouteWithChildren,
     Char123LocaleChar125404Route: Char123LocaleChar125404Route,
   }
 

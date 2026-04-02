@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useIntlayer } from 'react-intlayer'
 
-export const Route = createFileRoute('/{-$locale}/_authenticated/_user/community')({
+export const Route = createFileRoute('/{-$locale}/_private/_user/community')({
   component: RouteComponent,
 })
 
