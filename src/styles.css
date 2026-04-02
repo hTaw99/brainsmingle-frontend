@@ -134,3 +134,9 @@
     --font-sans: 'Cairo Variable', sans-serif;
   }
 }
+
+@layer utilities {
+  .font-sans {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+}
