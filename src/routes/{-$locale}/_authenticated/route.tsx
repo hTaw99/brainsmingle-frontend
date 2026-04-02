@@ -1,5 +1,6 @@
 import { Pending } from '@/components/pending'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
+import { getPathWithoutLocale } from 'intlayer'
 
 export const Route = createFileRoute('/{-$locale}/_authenticated')({
   ssr: false,
@@ -8,7 +9,7 @@ export const Route = createFileRoute('/{-$locale}/_authenticated')({
     if (!context.user?.data) {
       throw redirect({
         to: '/{-$locale}/login',
-        search: { redirectTo: location.pathname },
+        search: { redirectTo: getPathWithoutLocale(location.pathname) },
         params: { locale: params.locale },
       })
     }
