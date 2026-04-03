@@ -16,6 +16,7 @@ import TanStackQueryDevtools from '@/integrations/tanstack-query/devtools'
 import appCss from '../styles.css?url'
 
 import type { QueryClient } from '@tanstack/react-query'
+import { clearAuthCookies } from '@/api/auth/clear-session'
 import type { getMe } from '@/api/users/get-me'
 import { getMeQueryOptions } from '@/api/users/get-me'
 import { getIsomorphicAccessToken } from '@/api/request/request-interceptor'
