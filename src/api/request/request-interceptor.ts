@@ -21,9 +21,9 @@ export const requestInterceptor = async (
 
 export const getIsomorphicAccessToken = createIsomorphicFn()
   .server(async () => {
-    let accessToken: string | null = getCookie(ACCESS_TOKEN_NAME) ?? null
+    let accessToken = getCookie(ACCESS_TOKEN_NAME) ?? null
     if (!accessToken) {
-      accessToken = (await refreshToken()) as string | null
+      accessToken = await refreshToken()
     }
     return accessToken
   })

@@ -26,7 +26,7 @@ export const refreshToken = createServerFn().handler(async () => {
 
     setCookie(ACCESS_TOKEN_NAME, accessToken, accessCookieOptions)
 
-    return { accessToken }
+    return accessToken
   } catch {
     return null
   }

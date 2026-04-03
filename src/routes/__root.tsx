@@ -16,7 +16,6 @@ import TanStackQueryDevtools from '@/integrations/tanstack-query/devtools'
 import appCss from '../styles.css?url'
 
 import type { QueryClient } from '@tanstack/react-query'
-import { clearAuthCookies } from '@/api/auth/clear-session'
 import type { getMe } from '@/api/users/get-me'
 import { getMeQueryOptions } from '@/api/users/get-me'
 import { getIsomorphicAccessToken } from '@/api/request/request-interceptor'
@@ -45,7 +44,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       return { user: null }
     }
 
-    context.queryClient.setQueryData(QUERY_KEYS.accessToken, accessToken)
+    await context.queryClient.setQueryData(QUERY_KEYS.accessToken, accessToken)
     return { user: me }
   },
 
@@ -87,7 +86,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
 
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        <IntlayerProvider locale={locale}>
+        <IntlayerProvider locale={locale} isCookieEnabled>
           <Direction.Provider dir={getHTMLTextDir(locale) as any}>
             <PostHogProvider>
               {children}
