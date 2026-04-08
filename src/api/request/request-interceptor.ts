@@ -27,8 +27,14 @@ export const getIsomorphicAccessToken = createIsomorphicFn()
     }
     return accessToken
   })
-  .client(() => {
-    return getContext().queryClient.getQueryData(QUERY_KEYS.accessToken)
+  .client(async () => {
+    let accessToken = getContext().queryClient.getQueryData(
+      QUERY_KEYS.accessToken,
+    )
+    if (!accessToken) {
+      accessToken = await refreshToken()
+    }
+    return accessToken
   })
 
 export const setIsomorphicAccessToken = createIsomorphicFn()
